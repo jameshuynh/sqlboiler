@@ -93,7 +93,7 @@ func (q {{$alias.DownSingular}}Query) AllP({{if .NoContext}}exec boil.Executor{{
 
 // All returns all {{$alias.UpSingular}} records from the query.
 func (q {{$alias.DownSingular}}Query) All({{if .NoContext}}exec boil.Executor{{else}}ctx context.Context, exec boil.ContextExecutor{{end}}) ({{$alias.UpSingular}}Slice, error) {
-	var o []*{{$alias.UpSingular}}
+	var o []*{{$alias.UpSingular}} = make([]*{{$alias.UpSingular}}, 0)
 
 	err := q.Bind({{if .NoContext}}nil{{else}}ctx{{end}}, exec, &o)
 	if err != nil {
